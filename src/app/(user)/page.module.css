@@ -1,0 +1,15 @@
+.centeralign{
+    font-weight: regular;
+    text-align: center;
+    margin-block-start: 15%;
+}
+
+.mainflexbox {
+    display:flex;
+    flex-direction: column;
+    min-height: 100dvh;
+}
+
+.content{
+    flex-grow:1;
+}

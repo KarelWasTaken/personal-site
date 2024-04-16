@@ -1,0 +1,10 @@
+.articlebox{
+    display: flex;
+    flex-direction: column;
+    row-gap: 2rem;
+}
+
+.articleboxparent{
+    display: flex;
+    justify-content: center;
+}

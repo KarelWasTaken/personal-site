@@ -1,0 +1,22 @@
+.mainbox{
+    display: flex;
+    gap: 2rem;
+    margin-inline: 3rem;
+}
+
+.textstyle{
+    width: 500px;
+    margin-block-start: 1rem;
+}
+
+.imagestyle{
+    border-radius: 5px;
+}
+
+.articleh1{
+    font-size: 32px;
+}
+
+.articlep{
+    padding-block-start: 1rem;
+}
