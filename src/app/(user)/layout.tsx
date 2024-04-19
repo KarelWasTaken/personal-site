@@ -1,5 +1,5 @@
-import Navigation from "@/components/Navigation"
-import Footer from "@/components/Footer"
+import Navigation from "@/components/nav/Navigation"
+import Footer from "@/components/nav/Footer"
 import styles from "./page.module.css"
 
 
