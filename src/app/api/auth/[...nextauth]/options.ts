@@ -32,5 +32,9 @@ export const options: NextAuthOptions = {
                 else return null;
             }
         })
-    ]
+    ],
+    pages: {
+        signIn: "/signin"
+    }
+
 }
