@@ -2,6 +2,7 @@
 import { useRef } from "react";
 import InputBox from "../others/InputBox";
 import { signIn } from "next-auth/react";
+import styles from "./SignInComponent.module.scss"
 
 type Props = {
     className?: string;
@@ -23,20 +24,26 @@ const SignInComponent = (props: Props) => {
     }
     return(
         <div className={props.className}>
-            <form onSubmit={onSubmit}>
-                {!!props.error && <p>Chyba autentikace</p>}
-                <InputBox
-                    name="username"
-                    labelText="user name"
-                    onChange={(e) => (userName.current = e.target.value)}
-                />
-                <InputBox
-                    name="password"
-                    labelText="pass word"
-                    onChange={(e) => (pass.current = e.target.value)}
-                />
-                <button type="submit">SignIn</button>
+
+            <form onSubmit={onSubmit} className={styles.form}>
+                <h1 className={styles.heading}>Přihlásit se</h1>
+                <div className={styles.inputboxparent}>
+                    <InputBox
+                        name="username"
+                        labelText="Uživatelské jméno"
+                        onChange={(e) => (userName.current = e.target.value)}
+                    />
+                    <InputBox
+                        name="password"
+                        labelText="Heslo"
+                        type="password"
+                        onChange={(e) => (pass.current = e.target.value)}
+                    />
+                </div>
+                {!!props.error && <p className={styles.chyba}>Chyba autentikace</p>}
+                <button type="submit" className={styles.button}>Přihlásit</button>
             </form>
+
         </div>
         
     )
