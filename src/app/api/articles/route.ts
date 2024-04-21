@@ -1,3 +1,4 @@
+import { GetAllArticles } from "@/data/articles";
 import connectMongoDB from "@/libs/mongodb";
 import Article from "@/models/article";
 import { getServerSession } from "next-auth";
@@ -14,9 +15,18 @@ export async function POST(request: NextRequest){
     return NextResponse.json({message: "Article Created"}, {status: 201});
 }
 
-export async function GET(req: NextRequest){
-    await connectMongoDB();
-    const articles = await Article.find();
+export async function GET(request: NextRequest){
+
+    const url = new URL(request.url);
+    let limit : number = 10;
+    let skip : number = 0;
+    try{
+        url.searchParams.get('limit') && (limit = parseInt(url.searchParams.get('limit')!));
+        url.searchParams.get('skip') && (skip = parseInt(url.searchParams.get('skip')!));
+    } catch{
+        console.log("Invalid props")
+    }
+    const articles = await GetAllArticles(limit, skip);
     return NextResponse.json({articles});
 }
 

@@ -1,4 +1,4 @@
-export interface ArticleType{
+export type ArticleType = {
     id: string;
     title: string;
     perex: string;
