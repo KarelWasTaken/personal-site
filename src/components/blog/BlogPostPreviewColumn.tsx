@@ -39,7 +39,7 @@ const BlogPostPreviewColumn = () => {
             .then((res) => res.json())
             .then(({articles}) => {
                 setArticles(articless.concat(articles));
-                if(prevarticles === articless.concat(articles).length) setStop(true);
+                if(prevarticles + renderPerBlock > articless.concat(articles).length) setStop(true);
         })
     }
 
