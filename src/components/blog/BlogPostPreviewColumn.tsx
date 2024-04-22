@@ -6,14 +6,19 @@ import BlogPostPreview from "./BlogPostPreview";
 import { useEffect, useState } from "react";
 import styles from "./BlogPostPreviewColumn.module.scss"
 
-const BlogPostPreviewColumn = () => {
-    const renderPerBlock = 1;
+
+type Props = {
+    rendered: number;
+  };
+
+
+const BlogPostPreviewColumn = (props: Props) => {
+    const renderPerBlock = 3;
     
 
     //let articles : ArticleType[] = [];
     const [articless, setArticles] = useState([]);
-    const [articlesRendered, setArticlesRendered] = useState(0);
-    const [isClicked, setIsClicked] = useState(false);
+    const [articlesRendered, setArticlesRendered] = useState(props?.rendered ? props.rendered : 0);
     const [stop, setStop] = useState(false);
     
 
@@ -33,13 +38,12 @@ const BlogPostPreviewColumn = () => {
         const url = new URL('http://localhost:3000/api/articles'); // Assuming your API route is at '/api/articles'
         url.searchParams.append('limit', renderPerBlock.toString()); // Add query parameters
         url.searchParams.append('skip', articlesRendered.toString());
-        const prevarticles = articless.length;
         setArticlesRendered(articlesRendered + renderPerBlock);
         fetch(url.toString())
             .then((res) => res.json())
             .then(({articles}) => {
                 setArticles(articless.concat(articles));
-                if(prevarticles + renderPerBlock > articless.concat(articles).length) setStop(true);
+                if(renderPerBlock != articles.length) setStop(true);
         })
     }
 
